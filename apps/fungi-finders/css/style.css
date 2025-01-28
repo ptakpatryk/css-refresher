@@ -27,7 +27,9 @@
   }
 
   /* https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html */
-  [role="list"] {
+  [role="list"],
+  ul,
+  li {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -255,11 +257,65 @@
     gap: 0.5rem 1rem;
   }
 
+  [aria-controls="primary-nav"] {
+    z-index: 100;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+
+    img {
+      border-radius: 0;
+    }
+  }
+
+  [aria-controls="primary-nav"] {
+    display: none;
+  }
+
   .primary-navigation {
     ul {
-      list-style-type: none;
       display: flex;
       gap: 0.5rem 1rem;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    @media(width < 760px) {
+      display: none;
+
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      right: 0;
+      font-size: var(--font-size-lg);
+      font-family: var(--ff-heading);
+      font-weight: 700;
+      background: var(--background-accent-main);
+      padding: 2rem;
+      border-radius: 0 0 0 var(--border-radius-3);
+
+      ul {
+        gap: 0;
+        flex-direction: column;
+      }
+
+      li+li {
+        margin-block-start: 1.5rem;
+        padding-block-start: 1.5rem;
+        border-top: 2px solid var(--background-accent-light);
+      }
+    }
+  }
+
+  @media(width < 760px) {
+    [aria-controls="primary-nav"] {
+      display: block;
+    }
+
+    [aria-expanded="true"]~.primary-navigation {
+      display: block;
     }
   }
 
@@ -296,9 +352,9 @@
   }
 
   .card__title {
-    font-size: 
+    font-size:
       var(--card-title-font-size,
-      var(--font-size-heading-sm));
+        var(--font-size-heading-sm));
     color: var(--card-title-color, var(--text-brand))
   }
 
