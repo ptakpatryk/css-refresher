@@ -257,6 +257,7 @@
 
   .primary-navigation {
     ul {
+      list-style-type: none;
       display: flex;
       gap: 0.5rem 1rem;
     }
